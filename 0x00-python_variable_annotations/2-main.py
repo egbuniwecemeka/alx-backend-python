@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from math import floor
+import math
 
 
 floor = __import__('2-floor').floor
