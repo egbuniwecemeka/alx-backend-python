@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+""" A python script of basic float annotations"""
 
 
 def add(a: float, b: float) -> float:
