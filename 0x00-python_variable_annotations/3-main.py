@@ -6,4 +6,4 @@ pi_str = to_str(3.14)
 
 print(pi_str == str(3.14))
 print(to_str.__annotations__)
-print(f" floor(3.14) returns {pi_str}, which is a {type(pi_str)}")
+print(f" to_str(3.14) returns {pi_str}, which is a {type(pi_str)}")
