@@ -2,5 +2,6 @@
 
 to_kv = __import__('7-to_kv').to_kv
 
-value = to_kv("emma", 3.14)
-print(value)
+print(to_kv.__annotations__)
+print(to_kv("eggs", 3))
+print(to_kv("school", 0.02))
