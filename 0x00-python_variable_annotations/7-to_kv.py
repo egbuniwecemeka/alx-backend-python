@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+""" A pythons script of string and int/float tuple annotations"""
 from typing import Union, Tuple
 
 
