@@ -8,7 +8,8 @@ def count():
     print("Two")
 
 def main():
-    return count()
+    for c in range(3):
+        count()
 
 
 if __name__ == "__main__":
