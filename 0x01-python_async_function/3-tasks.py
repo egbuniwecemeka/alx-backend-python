@@ -2,12 +2,11 @@
 """ A python script that takes an integer and rreturns an asyncio.Task """
 
 import asyncio
-from typing import Task
 
 wait_random = __import__('0-basic_async_syntax').wait_random
 
 
-def task_wait_random(max_delay: int) -> Task:
+def task_wait_random(max_delay: int) -> asyncio.Task:
     """ 
     takes an integer and returns a asyncio.Task
 
