@@ -2,6 +2,7 @@
 """ A python script that measures total execution runtime"""
 
 import time
+import asyncio
 
 
 wait_n = __import__('1-concurrent_coroutines').wait_n
@@ -23,7 +24,7 @@ def measure_time(n: int, max_delay: int) -> float:
     start_time = time.time()
 
     # synchronously run wait_n
-    wait_n(n, max_delay)
+    asyncio.run(wait_n(n, max_delay))
 
     # Record end time
     end_time = time.time()
