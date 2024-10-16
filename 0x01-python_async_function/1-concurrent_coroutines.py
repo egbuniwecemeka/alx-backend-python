@@ -36,5 +36,5 @@ async def wait_n(n: int, max_delay: int) -> List[float]:
                 break
         if not inserted:
             sorted_delay.append(delay)
-    
+
     return sorted_delay
