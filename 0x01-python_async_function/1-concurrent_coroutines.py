@@ -21,7 +21,7 @@ async def wait_n(n: int, max_delay: int) -> List[float]:
     """
     spawned = [wait_random(max_delay) for _ in range(n)]
 
-    # run spawned tasks comot 
+    # run spawned tasks concurrently, and collect their values
     delays = await asyncio.gather(*spawned)
 
     # Manual sorting without using sort()
