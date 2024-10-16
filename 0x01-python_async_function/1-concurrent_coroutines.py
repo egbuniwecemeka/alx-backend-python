@@ -3,6 +3,7 @@
 
 import asyncio
 from typing import List
+from bisect import insort
 
 wait_random = __import__('0-basic_async_syntax').wait_random
 
@@ -27,14 +28,6 @@ async def wait_n(n: int, max_delay: int) -> List[float]:
     # Manual sorting without using sort()
     sorted_delay = []
     for delay in delays:
-        inserted = False
-        # Insert delay in their right index/position
-        for index in range(len(sorted_delay)):
-            if delay < sorted_delay[index]:
-                sorted_delay.insert(index, delay)
-                inserted = True
-                break
-        if not inserted:
-            sorted_delay.append(delay)
+        insort(sorted_delay, delay)
 
     return sorted_delay
