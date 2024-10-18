@@ -2,7 +2,7 @@
 
 import asyncio
 
-task_wait_n = __import__('4-tasks.py').task_wait_n
+task_wait_n = __import__('4-tasks').task_wait_n
 
 n = 5
 max_delay = 6
