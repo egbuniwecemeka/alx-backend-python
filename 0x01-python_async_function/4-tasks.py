@@ -20,7 +20,7 @@ async def task_wait_n(n: int, max_delay: int) -> List[float]:
     Return:
     List of all delay values (floats)
     """
-    spawn = [task_wait_n(max_delay) for _ in range(n)]
+    spawn = [wait_random(max_delay) for _ in range(n)]
 
     # run spqwned tasks concurrently and collect their values
     delays = await asyncio.gather(*spawn)
