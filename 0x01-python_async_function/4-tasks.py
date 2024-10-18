@@ -29,4 +29,4 @@ async def task_wait_n(n: int, max_delay: int) -> List[float]:
     """     sorted_task = []
     for delay in delays:
         insort(sorted_task, delay) """
-    return sorted(delays)
+    return delays
