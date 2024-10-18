@@ -9,7 +9,7 @@ wait_random = __import__('0-basic_async_syntax').wait_random
 
 
 async def task_wait_n(n: int, max_delay: int) -> List[float]:
-    """ 
+    """
     Spawns task_wait_n n times with the specified delay time
     Also, returns a list of all delay values as floats
 
