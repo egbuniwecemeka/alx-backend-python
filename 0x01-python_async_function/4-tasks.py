@@ -5,7 +5,7 @@ import asyncio
 from typing import List
 from bisect import insort
 
-wait_random = __import__()
+wait_random = __import__('0-basic_async_syntax').wait_random
 
 
 async def task_wait_n(n: int, max_delay: int) -> List[float]:
