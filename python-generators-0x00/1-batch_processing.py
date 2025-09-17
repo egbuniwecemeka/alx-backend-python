@@ -11,7 +11,7 @@ def stream_users_in_batches(batch_size):
     while True:
         batch = cursor.fetchmany(batch_size)
         if not batch:
-            break
+            return None
         for rows in batch:
             yield rows
 
