@@ -18,4 +18,13 @@ def stream_users_in_batches(batch_size):
 
 def batch_processing(batch_size):
     """ Processes each batch to filter users over the age of 25 """
-    pass
+    connection = connect_to_prodev()
+    cursor = connection.cursor()
+    cursor.execute('SELECT * FROM user_data WHERE age > 25;')
+    while True:
+        batch = cursor.fetchmany(size=batch_size)
+        if not batch:
+            break
+        for row in batch:
+            yield row
+        
