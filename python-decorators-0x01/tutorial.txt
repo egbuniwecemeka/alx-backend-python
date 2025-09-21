@@ -1,0 +1,7 @@
+Before understanding decorators some python finer points needs to be understood. Such as in the context of a decorator, a function returns value(s) based on given arguments
+Python supports many functional programming concepts eg Fist-class objects i.e functions can be passed around and used as arguments
+Functions passed as argument are passed as references i.e no parenthesis but the actual calling function has the parenthesis
+This distinction is a crucial way of functions work as first -class objects
+Inner functions are functions inside another function
+Note- The order of the inner functions don't matter but their order of execution.
+Therefore, the inner functions are not defined until the parent functions are defined (locally scoped to parent - existing in the parent function as local variables)
