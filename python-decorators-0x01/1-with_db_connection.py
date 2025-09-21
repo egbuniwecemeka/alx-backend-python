@@ -7,7 +7,7 @@ def with_db_connection(func):
     """ Handles automatic conection and closure to DB """
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
-        conn = sqlite3.connect()
+        conn = sqlite3.connect('users.db')
         result = func(conn, *args, **kwargs)
         conn.close()
         return result
