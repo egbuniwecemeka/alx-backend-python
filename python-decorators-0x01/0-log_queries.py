@@ -7,13 +7,16 @@ from datetime import datetime
 """ YOUR CODE GOES HERE"""
 
 
-def log_queries(fetch_all_user):
+def log_queries(func):
+    @functools.wraps(func)
     def wrapper(*args, **kwargs):
-        print('SQL query before execution')
-        result = fetch_all_user(*args, **kwargs)
-        print('SQL query after execution')
+        print(f'[{datetime.now()}] SQL query before execution')
+        result = func(*args, **kwargs)
+        print(f'[{datetime.now()}] SQL query after execution')
         return result
     return wrapper
+
+""" My code ends here"""
 
 @log_queries
 def fetch_all_users(query):
