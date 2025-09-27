@@ -43,7 +43,8 @@ INSTALLED_APPS = [
 REST_FRAMEWORK = {
     # Uses django default django.contri. read-only operations for unauthorized users.
     'DEFAULT_PERMISSION_CLASSES' : ['rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
-                                    'rest_framework.permissions.isAuthenticated']
+                                    'rest_framework.permissions.isAuthenticated'],
+    'DEFAULT_AUTHENTICATION_CLASSES' : ['rest_framework.authentication.SessionAuthentication']
 }
 
 MIDDLEWARE = [
