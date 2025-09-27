@@ -37,8 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
+    'rest_framework', # Added rest_framework as an installed app
 ]
+
+REST_FRAMEWORK = {
+    # Uses django default django.contri. read-only operations for unauthorized users.
+    'DEFAULT_PERMISSION_CLASSES' : ['rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly']
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
