@@ -21,3 +21,14 @@ class Message(models.Model):
     sender_id = models.ForeignKey('User', on_delete=models.CASCADE, to_field='user_id', related_name='messages')
     message_body = models.TextField(null=False)
     sent_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.message_id} {self.sender_id}'
+
+class Conversation(models.Model):
+    conversation_id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    participants_id = models.ForeignKey('User', on_delete=models.CASCADE, to_field='user_id')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.conversation_id} {self.participants_id}'
