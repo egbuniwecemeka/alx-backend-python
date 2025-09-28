@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import User, Message, Conversation
 
 class UserSerializer(serializers.HyperlinkedModeSerializer): # Hyperlinking - Good RESTful design
+    user_id = serializers.CharField(max_length=100)
     full_name = serializers.SerializerMethodField()
     class Meta:
         model = User
