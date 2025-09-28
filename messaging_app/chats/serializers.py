@@ -2,10 +2,11 @@ from rest_framework import serializers
 from .models import User, Message, Conversation
 
 class UserSerializer(serializers.HyperlinkedModeSerializer): # Hyperlinking - Good RESTful design
+    full_name = serializers.SerializerMethodField()
     class Meta:
         model = User
         fields = ['user_id', 'first_name', 'last_name', 'email',
-                  'password_hash', 'phone_number', 'role', 'created_at'
+                  'password_hash', 'phone_number', 'role', 'created_at', 'full_name'
                   ]
 
 class MessageSerializer(serializers.HyperlinkedModeSerializer):
