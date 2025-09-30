@@ -9,6 +9,16 @@ class UserSerializer(serializers.HyperlinkedModeSerializer): # Hyperlinking - Go
         fields = ['user_id', 'first_name', 'last_name', 'email',
                   'password_hash', 'phone_number', 'role', 'created_at', 'full_name'
                   ]
+    
+    def validate(self, data):
+        if data['role'] == 'admin' and data['first_name'] == '':
+            raise serializers.ValidationError('Admins must have a first name')
+        return data
+    
+    def validate_email(self, value):
+        if not value.endswith('@gmail.com'):
+            raise serializers.ValidationError('Emails must be gmail.com')
+        return value
 
 class MessageSerializer(serializers.HyperlinkedModeSerializer):
     class Meta:
