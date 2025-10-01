@@ -8,5 +8,5 @@ router.register(r'conversation', ConversationViewSet)
 
 urlpattern = [
     path("", include(router.urls)), # Link API views to URLs automatically
-    path('/api/api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('api/api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
