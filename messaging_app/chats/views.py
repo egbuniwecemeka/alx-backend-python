@@ -12,7 +12,7 @@ from .serializers import ConversationSerializer, MessageSerializer
 
     eg queryset, serializer_class, permission_classes,
     ordering_fields, search_fields, filterset_fields, filter_backends
-
+    etc.
 """
 class ConversationViewSet(viewsets.ModelViewSet):
     queryset = Conversation.objects.all()
