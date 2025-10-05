@@ -3,8 +3,9 @@
 
 from unittest import TestCase
 from utils import access_nested_map
+from parameterized import parameterized
 
-class parameterized:
+""" class parameterized:
     @staticmethod
     def expand(cases):
         def decorator(func):
@@ -14,7 +15,7 @@ class parameterized:
                         result = func(self, *case)
                         return result
             return wrapper
-        return decorator
+        return decorator """
 
 class TestAccessNestedMap(TestCase):
     @parameterized.expand([
