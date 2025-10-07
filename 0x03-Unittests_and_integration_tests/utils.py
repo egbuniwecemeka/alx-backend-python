@@ -5,10 +5,15 @@
 from functools import wraps
 from typing import (Mapping,
                     Sequence,
-                    Any)
+                    Any,
+                    str)
+from requests import get
 
 
-__all__ = ["access_nested_map"]
+__all__ = [
+            "access_nested_map",
+            "get_json",
+]
 
 def access_nested_map(nested_map: Mapping, path: Sequence) -> Any:
     """ Access nested map with key path.
@@ -31,7 +36,7 @@ def access_nested_map(nested_map: Mapping, path: Sequence) -> Any:
 
     return nested_map
 
-if __name__ == "__main__":
-    nested_map = {"a": {"b": {"c": 1}}}
-    result = access_nested_map(nested_map, ["a", "b", "c"])
-    print(result)
+def get_json(url: str) -> Any:
+    """ Gets a response from a remote URL """
+    response = requests.get(url)
+    return response.json()
