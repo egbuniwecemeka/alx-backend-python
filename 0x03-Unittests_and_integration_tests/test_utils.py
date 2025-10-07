@@ -41,7 +41,7 @@ class TestAccessNestedMap(TestCase):
         
 class TestGetJson(TestCase):
     """ Test get_json to check for expected result """
-    @parameterized([
+    @parameterized.expand([
         ("http://example.com", {"payload": True}),
         ("http://holberton.io", {"payload": False})
     ])
