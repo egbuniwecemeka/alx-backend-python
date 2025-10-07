@@ -45,7 +45,7 @@ class TestGetJson(TestCase):
         ("http://example.com", {"payload": True}),
         ("http://holberton.io", {"payload": False})
     ])
-    @patch('get_json')
+    @patch('utils.get_json')
     def test_get_json(self, test_url, test_payload, mock_data):
         # Mock data
         mock_result = Mock()
