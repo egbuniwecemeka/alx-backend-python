@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """ Generic utility for github org client
 """
-
+import requests
 from functools import wraps
 from typing import (Mapping,
                     Sequence,
                     Any,
-                    str)
-from requests import get
+                    Dict,
+)
 
 
 __all__ = [
@@ -36,7 +36,8 @@ def access_nested_map(nested_map: Mapping, path: Sequence) -> Any:
 
     return nested_map
 
-def get_json(url: str) -> Any:
+
+def get_json(url: str) -> Dict:
     """ Gets a response from a remote URL """
     response = requests.get(url)
     return response.json()
