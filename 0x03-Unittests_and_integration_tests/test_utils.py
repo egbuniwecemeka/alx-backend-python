@@ -52,7 +52,7 @@ class TestGetJson(TestCase):
         # Mock data
         mock_result = Mock()
         mock_result.json.return_value = test_payload
-        mock_data.return_data = mock_result
+        mock_data.return_value = mock_result
 
         # Retrieve data from test_url
         result = get_json(test_url)
