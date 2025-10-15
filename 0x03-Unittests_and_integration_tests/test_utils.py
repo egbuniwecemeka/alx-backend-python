@@ -20,7 +20,7 @@ from parameterized import parameterized
 
 
 class TestAccessNestedMap(TestCase):
-    """ Test access_nested_map for corresponding key-value pair """
+    """ Test class for utis.access_nested_map """
     # creates new methods on the test
     @parameterized.expand([
         ({"a": 1}, ("a",), 1),
@@ -28,6 +28,7 @@ class TestAccessNestedMap(TestCase):
         ({"a": {"b": 2}}, ("a", "b",), 2)
     ])
     def test_access_nested_map(self, nested_map, path, expected):
+        """ Test access_nested_map for corresponding key-value pairs """
         result = access_nested_map(nested_map, path)
         self.assertEqual(result, expected)
 
@@ -37,7 +38,7 @@ class TestAccessNestedMap(TestCase):
         ({"a": 1}, ("a", "b",))
     ])
     def test_access_nested_map_exception(self, nested_map, path):
-        # check to see if test raises necessary KeyError
+        """ Test to check if test raises necessary KeyError """
         with self.assertRaises(KeyError):
             access_nested_map(nested_map, path)
 
