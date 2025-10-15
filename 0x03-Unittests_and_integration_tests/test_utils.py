@@ -20,6 +20,7 @@ from parameterized import parameterized
 
 
 class TestAccessNestedMap(TestCase):
+    """ Test access_nested_map for corresponding key-value pair """
     # creates new methods on the test
     @parameterized.expand([
         ({"a": 1}, ("a",), 1),
