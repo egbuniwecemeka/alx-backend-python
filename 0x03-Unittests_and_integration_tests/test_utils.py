@@ -18,6 +18,7 @@ from parameterized import parameterized
             return wrapper
         return decorator """
 
+
 class TestAccessNestedMap(TestCase):
     # creates new methods on the test
     @parameterized.expand([
@@ -38,7 +39,8 @@ class TestAccessNestedMap(TestCase):
         # check to see if test raises necessary KeyError
         with self.assertRaises(KeyError):
             access_nested_map(nested_map, path)
-        
+
+
 class TestGetJson(TestCase):
     """ Test utils.get_json """
     @parameterized.expand([
@@ -48,7 +50,7 @@ class TestGetJson(TestCase):
     @patch('utils.requests.get')
     def test_get_json(self, test_url, test_payload, mock_data):
         """ Test that get_json returns the expected result """
-        
+
         # Mock data
         mock_result = Mock()
         mock_result.json.return_value = test_payload
@@ -66,9 +68,10 @@ class TestGetJson(TestCase):
 
 class TestMemoize(TestCase):
     """ Test memoize decorator """
-    
+
     def test_memoize(self):
         """  Test that a_method is called once """
+
         class TestClass:
             def a_method(self):
                 return 42
@@ -76,7 +79,7 @@ class TestMemoize(TestCase):
             @memoize
             def a_property(self):
                 return self.a_method()
-        
+
         # Patch TestClass.a_method using context manager style content
         with patch.object(TestClass, 'a_method', return_value=42) as mock_data:
             obj = TestClass()
