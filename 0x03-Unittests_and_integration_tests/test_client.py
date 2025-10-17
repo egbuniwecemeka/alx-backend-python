@@ -16,17 +16,21 @@ class TestGithubOrgClient(TestCase):
     ])
     @patch('client.get_json')
     def test_org(self, org_name, mock_get_json):
-        """Test that GithubOrgClient.org calls get_json with correct URL"""
-        # Give the mock a simple dictionary so no errors occur
-        mock_get_json.return_value = {'repos_url': f'https://api.github.com/orgs/{org_name}/repos'}
+        """Test that GithubOrgClient.org returns correct value and calls get_json"""
+        # 1️⃣ Set a dummy return value for the mock
+        expected_payload = {'repos_url': f'https://api.github.com/orgs/{org_name}/repos'}
+        mock_get_json.return_value = expected_payload
 
-        # Fresh instance for each parameter
+        # 2️⃣ Instantiate a fresh GithubOrgClient
         client = GithubOrgClient(org_name)
 
-        # Access the property to trigger get_json
-        _ = client.org
+        # 3️⃣ Access the property to trigger get_json
+        result = client.org
 
-        # Check that get_json was called exactly once with the correct URL
+        # 4️⃣ Assert get_json called exactly once with correct URL
         mock_get_json.assert_called_once_with(
             f'https://api.github.com/orgs/{org_name}'
         )
+
+        # 5️⃣ Assert the return value matches the mock
+        self.assertEqual(result, expected_payload)
