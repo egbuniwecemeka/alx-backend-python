@@ -17,7 +17,7 @@ class TestGithubOrgClient(TestCase):
         """ Tests that GithubOrgClient.orrg returns the correct value """
         mock_get.return_value = {}
         client = GithubOrgClient(test_org)
-        result = client.org
+        client.org
 
         # Test
         mock_get.assert_called_once_with(f'https://api.github.com/orgs/{test_org}')
