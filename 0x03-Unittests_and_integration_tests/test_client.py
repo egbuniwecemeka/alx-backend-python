@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """ Test module for Github org client """
 
-from unittest import TestCase
+import unittest
 from unittest.mock import patch, PropertyMock
 from client import GithubOrgClient
 from parameterized import parameterized
 
-class TestGithubOrgClient(TestCase):
+class TestGithubOrgClient(unittest.TestCase):
     """ Tests GithubOrgClient """
 
     @parameterized.expand([
