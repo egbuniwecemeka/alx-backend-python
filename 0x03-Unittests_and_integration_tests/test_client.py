@@ -1,36 +1,27 @@
 #!/usr/bin/env python3
-"""Test module for GithubOrgClient"""
+""" Test module for Github org client """
 
 from unittest import TestCase
-from unittest.mock import patch
+from unittest.mock import patch, Mock
 from client import GithubOrgClient
 from parameterized import parameterized
 
-
 class TestGithubOrgClient(TestCase):
-    """Tests GithubOrgClient"""
-
+    """ Tests GithubOrgClient """
     @parameterized.expand([
         ('google',),
         ('abc',),
     ])
     @patch('client.get_json')
-    def test_org(self, org_name, mock_get_json):
-        """Test that GithubOrgClient.org returns correct value and calls get_json"""
-        # 1️⃣ Set a dummy return value for the mock
-        expected_payload = {'repos_url': f'https://api.github.com/orgs/{org_name}/repos'}
-        mock_get_json.return_value = expected_payload
+    def test_org(self, test_org, mock_get):
+        """ Tests that GithubOrgClient.orrg returns the correct value """
+        test_payload = {'repos_url': f'https://api.github.com/orgs/{test_org}/repos'}
+        mock_get.return_value = test_payload
 
-        # 2️⃣ Instantiate a fresh GithubOrgClient
-        client = GithubOrgClient(org_name)
-
-        # 3️⃣ Access the property to trigger get_json
+        client = GithubOrgClient(test_org)
         result = client.org
 
-        # 4️⃣ Assert get_json called exactly once with correct URL
-        mock_get_json.assert_called_once_with(
-            f'https://api.github.com/orgs/{org_name}'
-        )
+        # Test
+        mock_get.assert_called_once_with(f'https://api.github.com/orgs/{test_org}')
+        self.assertEqual(result, test_payload)
 
-        # 5️⃣ Assert the return value matches the mock
-        self.assertEqual(result, expected_payload)
