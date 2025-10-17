@@ -17,14 +17,16 @@ class TestGithubOrgClient(TestCase):
     @patch('client.get_json')
     def test_org(self, org_name, mock_get_json):
         """Test that GithubOrgClient.org calls get_json with correct URL"""
-        # Return a dummy dict so the property can access keys
+        # Give the mock a simple dictionary so no errors occur
         mock_get_json.return_value = {'repos_url': f'https://api.github.com/orgs/{org_name}/repos'}
 
-        # Fresh instance ensures memoize cache is empty
+        # Fresh instance for each parameter
         client = GithubOrgClient(org_name)
-        _ = client.org  # trigger the property
 
-        # Assert get_json was called exactly once with the expected URL
+        # Access the property to trigger get_json
+        _ = client.org
+
+        # Check that get_json was called exactly once with the correct URL
         mock_get_json.assert_called_once_with(
             f'https://api.github.com/orgs/{org_name}'
         )
