@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+""" Test module for Github org client """
 
 from unittest import TestCase
 from unittest.mock import patch, Mock
@@ -11,7 +12,7 @@ class TestGithubOrgClient(TestCase):
         ('google', {'org_payload': True}),
         ('abc', {'org_payload': False}),
     ])
-    @patch('client.get_json.get')
+    @patch('client.get_json')
     def test_org(self, test_org, test_payload,  mock_get):
         """ Tests that GithubOrgClient.orrg returns the correct value """
         mock_result = Mock()
@@ -22,6 +23,5 @@ class TestGithubOrgClient(TestCase):
         result = client.org
 
         # Test
-        mock_get.assert_called_once_with(test_org)
+        mock_get.assert_called_once_with(f'https://api.github.com/{test_org}')
         self.assertEqual(result, test_payload)
-
