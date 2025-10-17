@@ -1,23 +1,29 @@
 #!/usr/bin/env python3
-""" Test module for Github org client """
+"""Test module for GithubOrgClient"""
 
 from unittest import TestCase
 from unittest.mock import patch
 from client import GithubOrgClient
 from parameterized import parameterized
 
+
 class TestGithubOrgClient(TestCase):
-    """ Tests GithubOrgClient """
+    """Tests GithubOrgClient"""
+
     @parameterized.expand([
         ('google',),
         ('abc',),
     ])
     @patch('client.get_json')
-    def test_org(self, test_org,  mock_get):
-        """ Tests that GithubOrgClient.orrg returns the correct value """
-        mock_get.return_value = {}
-        client = GithubOrgClient(test_org)
-        client.org
+    def test_org(self, org_name, mock_get_json):
+        """Test that GithubOrgClient.org calls get_json with correct URL"""
+        # Give the mock a dummy return value to avoid internal errors
+        mock_get_json.return_value = {}
 
-        # Test
-        mock_get.assert_called_once_with(f'https://api.github.com/orgs/{test_org}')
+        client = GithubOrgClient(org_name)
+        client.org  # trigger the property
+
+        # Assert get_json called exactly once with the expected URL
+        mock_get_json.assert_called_once_with(
+            f'https://api.github.com/orgs/{org_name}'
+        )
