@@ -7,12 +7,14 @@ from typing import (Mapping,
                     Sequence,
                     Any,
                     Dict,
+                    Callable,
 )
 
 
 __all__ = [
             "access_nested_map",
             "get_json",
+            "memoize",
 ]
 
 def access_nested_map(nested_map: Mapping, path: Sequence) -> Any:
@@ -41,3 +43,25 @@ def get_json(url: str) -> Dict:
     """ Gets a response from a remote URL """
     response = requests.get(url)
     return response.json()
+
+
+def memoize(fn: Callable) -> Callable:
+    """ Decorator to memoize a method.
+    Example
+    -------
+    class MyClass:
+        @memoize
+        def a_method(self):
+            print("a_method called")
+            return 42
+    >>> my_object.a_method
+    42
+    """
+    my_attr = "_{}".format(fn.__name__)
+
+    @wraps(fn)
+    def memoized(self):
+        if not hasattr(self, my_attr):
+            setattr(self, my_attr, fn(self))
+        return getattr(self, my_attr)
+    return property(memoized)
