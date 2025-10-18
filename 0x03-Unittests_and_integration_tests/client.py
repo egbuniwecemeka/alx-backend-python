@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """ """
-from typing import (Dict)
+from typing import (Dict, List)
 from utils import (access_nested_map, get_json, memoize,)
 
 class GithubOrgClient:
@@ -26,7 +26,7 @@ class GithubOrgClient:
     def repos_payload(self) -> Dict:
         return get_json(self._public_repos_url)
     
-    def public_repos(self, license):
+    def public_repos(self, license: str = None) -> List[str]:
         """ """
         repo_payload = self.repos_payload
         public_repos_url = [
@@ -36,9 +36,9 @@ class GithubOrgClient:
         return public_repos_url
     
     @staticmethod
-    def has_license(repo, license_key):
+    def has_license(repo: Dict[str, Dict], license_key: str) -> bool:
         """ """
-        assert license_key is not None, "license_str must not be empty"
+        assert license_key is not None, "license_key must not be None"
         try:
             has_license = access_nested_map(repo, ('license', 'key')) == license_key
         except KeyError:

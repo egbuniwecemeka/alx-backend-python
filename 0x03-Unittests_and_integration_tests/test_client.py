@@ -30,7 +30,7 @@ class TestGithubOrgClient(unittest.TestCase):
         """ Test that GithubOrgClient._public_repos_url returns the right repos URL"""
 
         # Patch the org property on GithubOrgClient so it doesn't return the real API
-        with patch.object(GithubOrgClient.org, new_callable=PropertyMock) as mock_payload:
+        with patch.object(GithubOrgClient, 'org', new_callable=PropertyMock) as mock_payload:
             # Set mock to return a fake organization dictionary
             mock_payload.return_value = {'repos_url': 'http://api.github.com/orgs/testorg/repos'}
             
@@ -45,15 +45,18 @@ class TestGithubOrgClient(unittest.TestCase):
         """ Test GithubOrgClient.public_repos method """
 
         # Mock the return value of get_json for desired payload
-        mock_get_json.return_value = [{"keys": "values"}, {"keys": "values"}]
+        mock_get_json.return_value = [
+            {"name": "repo1", "license": {"key": "org_license"}},
+            {"name": "repo2", "license": {"key": "org_license"}}
+        ]
 
         # Patch _public_repos_url property so it doesn't make a real API call
-        with patch.object(GithubOrgClient, 'public_repos_url', new_callable=PropertyMock) as mock_repos_url:
+        with patch.object(GithubOrgClient, '_public_repos_url', new_callable=PropertyMock) as mock_repos_url:
             # Simulate that the property returns a fake URL
             mock_repos_url.return_value = 'https://api.github.com/orgs/testorg/repos'
 
             # Create an instance of the client and call the method being tested
-            result = GithubOrgClient('testorg').public_repos()
+            result = GithubOrgClient('testorg').public_repos('org_license')
 
 
             # Confirm that the method returns a list of repos name as expected
