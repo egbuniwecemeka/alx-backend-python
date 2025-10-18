@@ -17,7 +17,8 @@ class TestGithubOrgClient(unittest.TestCase):
     @patch('client.get_json')
     def test_org(self, test_org, mock_get):
         """ Tests that GithubOrgClient.orrg returns the correct value """
-        test_payload = {'repos_url': f'https://api.github.com/orgs/{test_org}/repos'}
+        test_payload = {
+            'repos_url': f'https://api.github.com/orgs/{test_org}/repos'}
         mock_get.return_value = test_payload
 
         client = GithubOrgClient(test_org)
@@ -30,16 +31,20 @@ class TestGithubOrgClient(unittest.TestCase):
     def test_public_repos_url(self):
         """ Test that GithubOrgClient._public_repos_url returns the right repos URL"""
 
-        # Patch the org property on GithubOrgClient so it doesn't return the real API
+        # Patch the org property on GithubOrgClient so it doesn't return the
+        # real API
         with patch.object(GithubOrgClient, 'org', new_callable=PropertyMock) as mock_payload:
             # Set mock to return a fake organization dictionary
-            mock_payload.return_value = {'repos_url': 'http://api.github.com/orgs/testorg/repos'}
-            
-            # Create a client instance and access thr _public_repos_url property
+            mock_payload.return_value = {
+                'repos_url': 'http://api.github.com/orgs/testorg/repos'}
+
+            # Create a client instance and access thr _public_repos_url
+            # property
             result = GithubOrgClient('testorg')._public_repos_url
 
             # Check that property returned the expected 'repos_url' value
-            self.assertEqual(result, 'http://api.github.com/orgs/testorg/repos')
+            self.assertEqual(
+                result, 'http://api.github.com/orgs/testorg/repos')
 
     @patch('client.get_json')
     def test_public_repos(self, mock_get_json):
@@ -64,4 +69,5 @@ class TestGithubOrgClient(unittest.TestCase):
             self.assertEqual(result, ['repo1', 'repo2'])
 
             # Check that get_son was called once with the mocked URL
-            mock_get_json.assert_called_once_with('https://api.github.com/orgs/testorg/repos')
+            mock_get_json.assert_called_once_with(
+                'https://api.github.com/orgs/testorg/repos')
