@@ -1,0 +1,18 @@
+#!/usr/local/bin/kubectl
+
+# kubectl needs a kubeconfig file to find and access a cluster. Check its properly configures by getting cluster state
+kubectl cluster-info        # URL output -> Correctly configured, otherwise Minikube is needed
+
+# Url response but cluster cant be accessed, check for proper configuration using
+kubectl cluster-info dump
+
+# Starts a Kubernetes cluster
+minikube start -driver=docker
+
+# Ensure MiniKube is installed
+minikube --version
+
+# Verify kubernetes cluster is running
+kubectl cluster-info
+
+# Retrieves the available pods
