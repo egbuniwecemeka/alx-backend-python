@@ -16,3 +16,6 @@ minikube --version
 kubectl cluster-info
 
 # Retrieves the available pods
+kubectl get pods
+
+# Retrieves the available pods
