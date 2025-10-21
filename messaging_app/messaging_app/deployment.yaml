@@ -1,0 +1,8 @@
+apiVersion: apps/v1
+kind: Service
+spec:
+  containers:
+    - name: my-container
+      image: my-image:latest
+      ports:
+        - containerPort: 8080
