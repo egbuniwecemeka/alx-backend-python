@@ -37,7 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework', # Added rest_framework as an installed app
+
+    # Third-party apps
+    'rest_framework',
+    'rest_framework_nested',
+    # My apps
+    'chats',
 ]
 
 REST_FRAMEWORK = {
