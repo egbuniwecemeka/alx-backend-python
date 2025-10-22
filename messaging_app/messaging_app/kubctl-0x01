@@ -1,7 +1,22 @@
 #!/usr/bin/env bash
 
-# Scaling number of replicas for app deployment to 3
-kubectl scale deployment ejcodes/messaging_app --replicas=3
+# Step 1: Check the current scale
+kubectl get deployments # List all deployments in the cluster, with their current scale
+
+# Step 2: Scaling number of replicas for app deployment to 3
+# --replica, --timeout, --namespace, --current-replicas
+kubectl scale deployment messaging_app_deployment --replicas=3 --timeout=120s # In this case we are scaling up
+
+#Step 3: Verify that deployment has been either scaled up or down same command -> Step 1
+kubectl get deployments
+
 
 # Verify if multiple pods are running
 kubectl get pods
+
+# Load testing on app using wrk to handle traffic
+kubectl run wrk-tester --image=williamyeh/wrk -it --rm-- \
+  wrk -t4 -c100 -d30s http://messaging-app-service:8000
+
+# Monitore resource usage
+kubectl top pod
