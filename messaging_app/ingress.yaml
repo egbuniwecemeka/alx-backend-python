@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: messaging_app_ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-tearget: /
+spec:
+  rules:
+  - host: messaging.local #optional: requires /etc/hosts setup
+    http:
+      paths:
+      - path: /api
+        pathType: Prefix
+        backend:
+          service:
+            name: messaging_app_service
+            port:
+              number: 80
+      
