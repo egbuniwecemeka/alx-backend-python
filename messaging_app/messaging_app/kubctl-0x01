@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
 
 # Scaling number of replicas for app deployment to 3
-kubectl scale
+kubectl scale deployment ejcodes/messaging_app --replicas=3
+
+# Verify if multiple pods are running
+kubectl get pods
