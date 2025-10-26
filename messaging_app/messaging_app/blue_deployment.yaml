@@ -7,11 +7,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: messaging_app
+      app: messaging_app_blue
   template:
     metadata:
       labels:
-        app: messaging_app
+        app: messaging_app_blue
     spec:
       containers:
         - name: messaging_app
@@ -26,7 +26,7 @@ metadata:
   name: messaging_app_service
 spec:
   selector:
-    app: messaging_app_deployment
+    app: messaging_app_blue
   ports:
     - name: http
       protocol: TCP
