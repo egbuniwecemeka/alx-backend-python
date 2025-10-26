@@ -1,0 +1,7 @@
+#!/usr/bin/bash
+
+# Deploy blue-green environment
+kubectl apply 
+
+# Checks for errors in the applied environment
+kubectl logs
