@@ -2,20 +2,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: messaging_app_deployment
+  name: messaging-app-deployment-blue
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: messaging_app_blue
+      app: messaging-app-blue
   template:
     metadata:
       labels:
-        app: messaging_app_blue
+        app: messaging-app-blue
     spec:
       containers:
-        - name: messaging_app
-          image: ejcodes/messaging_app:latest
+        - name: messaging-app
+          image: ejcodes/messaging-app:v1.0.0
           ports:
             - containerPort: 8080
 ---
@@ -23,10 +23,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: messaging_app_service
+  name: messaging-app-service
 spec:
   selector:
-    app: messaging_app_blue
+    app: messaging-app-blue
   ports:
     - name: http
       protocol: TCP
