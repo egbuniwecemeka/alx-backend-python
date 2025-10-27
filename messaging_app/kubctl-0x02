@@ -1,7 +1,9 @@
 #!/usr/bin/bash
 
+export DEPLOYMENT_FILE = /mnt/c/Users/Emmanueleg/Desktop/ALX/alx-backend-python/messaging_app/blue_deployment.yaml
+
 # Deploy blue-green environment
-kubectl apply 
+kubectl apply -f $DEPLOYMENT_FILE
 
 # Checks for errors in the applied environment
 kubectl logs
