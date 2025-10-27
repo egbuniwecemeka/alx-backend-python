@@ -1,9 +1,12 @@
 #!/usr/bin/bash
 
-export DEPLOYMENT_FILE = /mnt/c/Users/Emmanueleg/Desktop/ALX/alx-backend-python/messaging_app/blue_deployment.yaml
+# A script to deploy a blue-green environment
+
+# Variable holding path to deployment file
+export DEPLOYMENT_FILE=/mnt/c/Users/Emmanueleg/Desktop/ALX/alx-backend-python/messaging_app/blue_deployment.yaml
 
 # Deploy blue-green environment
-kubectl apply -f $DEPLOYMENT_FILE
+kubectl apply -f "$DEPLOYMENT_FILE"
 
-# Checks for errors in the applied environment
-kubectl logs
+# Checks for logs in labeled pods
+kubectl logs -l app=messaging-app-green
