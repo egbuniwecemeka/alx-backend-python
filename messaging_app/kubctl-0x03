@@ -1,0 +1,26 @@
+#!/usr/bin/bash
+
+# If you are using minikube ensure the service is running
+# minikube service messaging-app-service --url
+# use returned url in the script instead
+
+# A script to update application against downtime
+set -e
+
+DEPLOYMENT_FILE="blue_deployment.yaml"
+SERVICE_URL="http://localhost:8080"
+
+# Applying updated deployment file
+kubectl apply -f "$DEPLOYMENT_FILE"
+
+# Monitors rollout update progress
+kubectl rollout status deployment/messaging-app-deployment-blue
+
+# Test response using curl, downtime or disruptions by continous requests
+for i in {1..10}; do
+    curl -s -o /dev/null -w "Request $i: %{http_code}\n" "$SERVICE_URL"
+    sleep 1
+done
+
+# Verify rolling update is complete by checking the current pods
+kubectl get pods -o wide
