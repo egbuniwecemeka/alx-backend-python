@@ -41,15 +41,16 @@ INSTALLED_APPS = [
     # Third-party apps
     'rest_framework',
     'rest_framework_nested',
-    # My apps
-    'chats',
+    'rest_framework_simplejwt',  # JWT, Basic/Session Authentication
+    'chats',     # my-app
 ]
 
 REST_FRAMEWORK = {
     # Uses django default django.contri. read-only operations for unauthorized users.
     'DEFAULT_PERMISSION_CLASSES' : ['rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
                                     'rest_framework.permissions.IsAuthenticated'],
-    'DEFAULT_AUTHENTICATION_CLASSES' : ['rest_framework.authentication.SessionAuthentication']
+    'DEFAULT_AUTHENTICATION_CLASSES' : ['rest_framework.authentication.SessionAuthentication',
+                                        'rest_framework.authentication,BasicAuthentication']
 }
 
 MIDDLEWARE = [
